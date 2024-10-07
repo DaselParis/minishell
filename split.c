@@ -13,58 +13,80 @@
 #include "minishell.h"
 
 
-size_t	ft_size3(char *line, size_t i)
-{
-	while (line[i] != '\0' && (is_space(line[i]) != -1))
-		i++;
-	return (i);
-}
+// size_t	ft_size3(char *line, size_t i)
+// {
+// 	while (line[i] != '\0' && (is_space(line[i]) != -1))
+// 		i++;
+// 	return (i);
+// }
 
-size_t	ft_size2(char *line, size_t i, size_t word)
-{
-	size_t	count = 0;
-	while (line[i] != '\0' && (is_space(line[i]) != -1))
-	{
-		while (line[i] && line[i + 1] == '|')
-		{
-			count++;
-			i++;
-		}
-		i++;
-	}
-	word += count;
-	word++;
-	return (word);
-}
+// size_t	ft_size2(char *line, size_t i, size_t word)
+// {
+// 	size_t	count = 0;
+// 	while (line[i] != '\0' && (is_space(line[i]) != -1))
+// 	{
+// 		while (line[i] && line[i + 1] == '|')
+// 		{
+// 			count++;
+// 			i++;
+// 		}
+// 		i++;
+// 	}
+// 	word += count;
+// 	word++;
+// 	return (word);
+// }
 
-size_t  ft_size(char *line)
-{
-	size_t  i;
-	size_t  j;
-	size_t  word;
+// size_t  ft_size(char *line)
+// {
+// 	size_t  i;
+// 	size_t  j;
+// 	size_t  word;
 
-	word = 0;
+// 	word = 0;
+// 	i = 0;
+// 	while (line[i] != '\0')
+// 	{
+// 		while (is_space(line[i]) == -1)
+// 			i++;
+// 		if (line[i] == '\0')
+// 			break;
+// 		if (line[i] != '\0' && (line[i] == '"' || line[i] == '\''))
+// 		{
+// 			j = i;
+// 			i++;
+// 			while (line[i] != '\0' && line[i] != line[j])
+// 				i++;
+// 		}
+// 		word = ft_size2(line, i, word);
+// 		i = ft_size3(line, i);
+// 		printf("word = %zu\n", word);
+// 	}
+// 	return (word);
+// }
+
+
+size_t ft_size(char *line)
+{
+	int words;
+	int i;
+	int ret;
+
+	words = 0;
+	ret = 1;
 	i = 0;
-	while (line[i] != '\0')
+	while (ret != 0)
 	{
-		while (is_space(line[i]) == -1)
-			i++;
-		if (line[i] == '\0')
+		ret = ft_word(line, i);
+		if (ret == 0)
 			break;
-		if (line[i] != '\0' && (line[i] == '"' || line[i] == '\''))
-		{
-			j = i;
-			i++;
-			while (line[i] != '\0' && line[i] != line[j])
-				i++;
-		}
-		word = ft_size2(line, i, word);
-		i = ft_size3(line, i);
-		printf("word = %zu\n", word);
+		if (!ft_isspace(line[i]))
+			words++;
+		i += ret;
 	}
-	return (word);
+	printf("words = %d\n", words);
+	return (words);	
 }
-
 
 
 int	ft_word2(char *line, int i, size_t word_size)
