@@ -29,21 +29,21 @@ typedef struct  s_size
 
 enum e_token
 {
-        EMPTY = 9,
-        WORD = 10,
-        WHITE_SPACE = 11,
-        NEW_LINE = 12,
-        QOUTE = 13,
-        DOUBLE_QUOTE = 14,
-        ESCAPE = 15,
-        ENV = 16,
-        PIPE = 17,
-        REDIR_IN = 18,
-        REDIR_OUT = 19,
-        DOUBLEREDIR_IN = 180,
-        DOUBLEREDIR_OUT = 190,
-        HERE_DOC = 20,
-        DREDIR_OUT = 21,
+        EMPTY = 0,
+        WORD = 1,
+        WHITE_SPACE = 2,
+        NEW_LINE = 3,
+        QOUTE = 4,
+        DOUBLE_QUOTE = 5,
+        ESCAPE = 6,
+        ENV = 7,
+        PIPE = 8,
+        REDIR_IN = 9,
+        REDIR_OUT = 10,
+        DOUBLEREDIR_IN = 11,
+        DOUBLEREDIR_OUT = 12,
+        HERE_DOC = 13,
+        DREDIR_OUT = 14,
 };
 
 typedef struct s_token
@@ -69,13 +69,15 @@ int     ft_inputcheck(char *line);
 int     ft_prompt(void);
 
 
-//minishell
-int is_redicandothers2(char *str, char *c);
+//redirection
+//int is_redicandothers2(char *str, char *c);
 int ft_directiontype(char *str);
+
+//second main
 int    ft_token(char **splited, t_token **command);
 int     ft_tokenizer(char **splited, t_token **command);
 
-//split.c
+//parsing.c
 size_t  ft_size(char *line);
 int ft_word2(char *line, int i, size_t word_size);
 size_t  ft_word(char *line, int i);

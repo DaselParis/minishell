@@ -1,4 +1,4 @@
-SRC = list_utils.c  main.c secondmain.c split.c  utils2.c utils.c redirection.c
+SRC = list_utils.c  main.c secondmain.c parsing.c  utils2.c utils.c redirection.c
 OBJ = $(SRC:.c=.o)
 
 CC = cc
