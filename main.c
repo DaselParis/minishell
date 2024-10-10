@@ -76,7 +76,25 @@ int    main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	(void)envp;
-	if (ft_prompt() == -1)
-		return (0);
+	char	*input;
+	pid_t	pid;
+
+	while (1)
+	{
+		//1. display prompt
+		ft_printf("minishell$ ");
+		//2. get user input
+		input = readline();
+		//3. parse input
+		if (ft_prompt() == -1)
+			return (0);
+		//4. fork a new process to execute the command
+		pid = fork();
+		if (pid == 0)
+			execve(args[0], args, envp);
+		else
+			waitpid(pid, NULL, 0);
+		free(input);
+	}
 	return (0);
 }
