@@ -20,22 +20,20 @@ int	ft_check_token(t_token **tok)
 	tokennn = *tok;
 	while (tokennn != NULL)
 	{
-		if ((tokennn->type == REDIR_IN || tokennn->type == REDIR_OUT ||
+		if (tokennn->type == REDIR_IN || tokennn->type == REDIR_OUT ||
 			tokennn->type == PIPE || tokennn->type == DOUBLEREDIR_IN ||
-			tokennn->type == DOUBLEREDIR_OUT) && tokennn->next != NULL)
-		{
-			if ((tokennn->type == REDIR_IN || tokennn->type == REDIR_OUT ||
-			tokennn->type == PIPE || tokennn->type == DOUBLEREDIR_IN ||
-			tokennn->type == DOUBLEREDIR_OUT) && tokennn->next->type != WORD)
+			tokennn->type == DOUBLEREDIR_OUT)
 			{
-				printf("IF TOKEN REDIRECTION THE NEXT TOKEN HAS TO BE WORD SO IF IT SHOW THIS MSG = ITS NOT\n");
-				return (-1);
+				if (tokennn->next == NULL)
+					return (printf("arguments with tokenizer not good file tokenizer\n"), -1);
+				if (tokennn->next->type != WORD)
+					return (printf("there not word after the token\n"), -1);
 			}
-		}
 		tokennn = tokennn->next;
 	}
 	return (0);
 }
+
 
 int	ft_multiplespecialcarac(t_token **tokn)
 {
