@@ -69,6 +69,7 @@ void    ft_printflist(t_token *line)
 	while (line != NULL)
 	{
 		ft_putstr(line->str);
+		printf("\n");
 		line = line->next;
 	}
 }

@@ -38,12 +38,11 @@ enum e_token
         ESCAPE = 6,
         ENV = 7,
         PIPE = 8,
-        REDIR_IN = 9,
-        REDIR_OUT = 10,
-        DOUBLEREDIR_IN = 11,
-        DOUBLEREDIR_OUT = 12,
-        HERE_DOC = 13,
-        DREDIR_OUT = 14,
+        REDIR_IN = 9, // <
+        REDIR_OUT = 10,// >
+        DOUBLEREDIR_IN = 11,// << 
+        DOUBLEREDIR_OUT = 12,// >>
+        HERE_DOC = 13, // <<
 };
 
 typedef struct s_token
