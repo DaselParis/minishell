@@ -23,11 +23,11 @@ int ft_checkline(char *line)
 		return (-1);
 	while (line[i] != '\0')
 	{
-		if (line[i] == '\'' || line[i] == '"' || line[i] == '\\')
+		if (line[i] == '\'' || line[i] == '"')
 			open_quote++;
 		i++;
 	}
-	if (open_quote == 1)
+	if (open_quote % 2 != 0)
 		return (printf("-bash: syntax error\n"), -1);
 	return (0);
 }

@@ -24,6 +24,8 @@ int	ft_check_token(t_token **tok)
 			tokennn->type == PIPE || tokennn->type == DOUBLEREDIR_IN ||
 			tokennn->type == DOUBLEREDIR_OUT)
 			{
+				if (tokennn->pos == 0)
+					return (printf("no word first place\n"), -1);
 				if (tokennn->next == NULL)
 					return (printf("arguments with tokenizer not good file tokenizer\n"), -1);
 				if (tokennn->next->type != WORD)
@@ -63,6 +65,7 @@ int    ft_token(char **splited, t_token **command)
 			current->type = ENV;
 		else
 			current->type = WORD;
+		current->pos = i;
 		printf("%d\n", current->type);
 		ft_lstadd_back(command, current);
 		i++;
